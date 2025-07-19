@@ -1,9 +1,11 @@
 package org.example.ecommerceapplication.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
+import org.example.ecommerceapplication.exceptions.ProductNotFoundException;
 import org.example.ecommerceapplication.models.Product;
 import org.example.ecommerceapplication.services.ProductService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -24,8 +26,11 @@ public class ProductController {
   }
 
   @GetMapping("/{id}")
-  public Product getSingleProduct(@PathVariable("id") long id) {
-    return productService.getSingleProduct(id);
+  public ResponseEntity<Product> getSingleProduct(@PathVariable("id") long id)
+      throws ProductNotFoundException {
+    return
+        new ResponseEntity<>(productService.getSingleProduct(id),
+            HttpStatus.OK);
 
   }
 
