@@ -20,11 +20,11 @@ public class FakeStoreProductServiceImpl implements ProductService {
 
   @Override
   public Product getSingleProduct(long id) throws ProductNotFoundException {
-    throw new ProductNotFoundException(id, "Product is not present in db");
+    //throw new ProductNotFoundException(id, "Product is not present in db");
 
-//    FakeStoreProductDto fakeStoreProductDto = restTemplate.getForObject(
-//        "https://fakestoreapi.com/products/" + id, FakeStoreProductDto.class);
-//    return convertFakeStoreDtoToProduct(fakeStoreProductDto);
+    FakeStoreProductDto fakeStoreProductDto = restTemplate.getForObject(
+        "https://fakestoreapi.com/products/" + id, FakeStoreProductDto.class);
+    return convertFakeStoreDtoToProduct(fakeStoreProductDto);
   }
 
   @Override
