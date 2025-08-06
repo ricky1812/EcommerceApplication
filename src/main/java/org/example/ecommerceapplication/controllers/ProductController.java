@@ -4,6 +4,7 @@ import java.util.List;
 import org.example.ecommerceapplication.exceptions.ProductNotFoundException;
 import org.example.ecommerceapplication.models.Product;
 import org.example.ecommerceapplication.services.ProductService;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,8 +22,13 @@ public class ProductController {
 
   private final ProductService productService;
 
-  public ProductController(ProductService productService) {
+  public ProductController(@Qualifier("SelfProductService") ProductService productService) {
     this.productService = productService;
+  }
+  @GetMapping("/initialize")
+  public List<Product> intilizeProducts(){
+    return productService.intializeProducts();
+
   }
 
   @GetMapping("/{id}")
@@ -40,8 +46,8 @@ public class ProductController {
   }
 
   @PostMapping
-  public Product createProduct(Product p) {
-    return new Product();
+  public Product createProduct(@RequestBody Product p) {
+    return productService.createProduct(p);
 
   }
 
