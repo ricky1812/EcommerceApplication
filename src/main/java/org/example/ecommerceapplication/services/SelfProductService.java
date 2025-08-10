@@ -9,6 +9,8 @@ import org.example.ecommerceapplication.models.Category;
 import org.example.ecommerceapplication.models.Product;
 import org.example.ecommerceapplication.repositories.CategoryRepository;
 import org.example.ecommerceapplication.repositories.ProductRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -105,6 +107,11 @@ public class SelfProductService implements ProductService {
     return productList;
 
 
+  }
+
+  @Override
+  public Page<Product> getAllProductsByPage(int pageNumber, int pageSize) {
+    return productRepository.findAll(PageRequest.of(pageNumber,pageSize));
   }
 
   private Product convertFakeStoreDTOtoProduct(FakeStoreProductDto fakeStoreProductDto) {

@@ -3,6 +3,7 @@ package org.example.ecommerceapplication.services;
 import java.util.List;
 import org.example.ecommerceapplication.exceptions.ProductNotFoundException;
 import org.example.ecommerceapplication.models.Product;
+import org.springframework.data.domain.Page;
 
 public interface ProductService {
 
@@ -16,6 +17,7 @@ public interface ProductService {
 
   void updateProduct(long id, Product product);
   List<Product> intializeProducts();
+  Page<Product> getAllProductsByPage(int pageNumber,int pageSize);
 
 
 }

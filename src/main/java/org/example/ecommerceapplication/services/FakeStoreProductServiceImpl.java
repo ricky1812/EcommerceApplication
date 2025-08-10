@@ -6,6 +6,7 @@ import org.example.ecommerceapplication.dtos.FakeStoreProductDto;
 import org.example.ecommerceapplication.exceptions.ProductNotFoundException;
 import org.example.ecommerceapplication.models.Category;
 import org.example.ecommerceapplication.models.Product;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -59,6 +60,11 @@ public class FakeStoreProductServiceImpl implements ProductService {
   public List<Product> intializeProducts() {
     return null;
 
+  }
+
+  @Override
+  public Page<Product> getAllProductsByPage(int pageNumber, int pageSize) {
+    return null;
   }
 
   private Product convertFakeStoreDtoToProduct(FakeStoreProductDto fakeStoreProductDto) {
